@@ -19,12 +19,33 @@ class SoundViewController: UIViewController {
     var reproducirAudio:AVAudioPlayer?
     var audioURL:URL?
     
+    @IBOutlet weak var cronometro: UILabel!
+    var tiempo:Timer?
+    var contador = 0
+    var cronometroFormat:String = ""
+    
+    @IBOutlet weak var controlVolumen: UISlider!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurarGrabacion()
         reproducirButton.isEnabled = false
         agregarButton.isEnabled = false
+        controlVolumen.addTarget(self, action: #selector(cambiarVolumen(_:)), for: .valueChanged)
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func contadorCronometro() {
+        contador += 1
+        let minutos = contador / 60
+        let segundos = contador % 60
+        
+        cronometroFormat = String(format: "%02d:%02d", minutos, segundos)
+        cronometro.text = cronometroFormat
+    }
+    
+    @objc func cambiarVolumen(_ sender: UISlider) {
+        reproducirAudio?.volume = sender.value
     }
     
     @IBAction func grabarTapped(_ sender: Any) {
@@ -32,11 +53,13 @@ class SoundViewController: UIViewController {
            grabarAudio?.stop()
            grabarButton.setTitle("GRABAR", for: .normal)
            reproducirButton.isEnabled = true
+            tiempo?.invalidate()
         }else{
            grabarAudio?.record()
            grabarButton.setTitle("DETENER", for: .normal)
            reproducirButton.isEnabled = false
             agregarButton.isEnabled = true
+            tiempo = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(contadorCronometro), userInfo: nil, repeats: true)
         }
 
     }
@@ -45,6 +68,7 @@ class SoundViewController: UIViewController {
         do{
            try reproducirAudio = AVAudioPlayer(contentsOf: audioURL!)
            reproducirAudio!.play()
+            reproducirAudio?.volume = controlVolumen.value
            print("Reproduciendo")
         }catch{}
     }
@@ -53,6 +77,7 @@ class SoundViewController: UIViewController {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let grabacion = Grabacion(context: context)
         grabacion.nombre = nombreTextField.text
+        grabacion.duracion = cronometroFormat
         grabacion.audio = NSData(contentsOf:audioURL!)! as Data
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         navigationController!.popViewController(animated: true)

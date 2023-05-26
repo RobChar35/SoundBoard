@@ -94,12 +94,26 @@
                                     <action selector="agregarTapped:" destination="1Qx-Jt-p3Y" eventType="touchUpInside" id="pkH-mx-SUL"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiempo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlR-PI-1gb">
+                                <rect key="frame" x="166.5" y="450.5" width="81" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9hI-Ak-TCF">
+                                <rect key="frame" x="68" y="510.5" width="278" height="31"/>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kvX-BU-k0K"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lkV-oj-F2S" firstAttribute="centerX" secondItem="blj-cL-hfG" secondAttribute="centerX" id="7sb-o1-j5n"/>
+                            <constraint firstItem="9hI-Ak-TCF" firstAttribute="centerX" secondItem="blj-cL-hfG" secondAttribute="centerX" id="BEf-wk-Xhg"/>
                             <constraint firstItem="E32-3R-cSK" firstAttribute="top" secondItem="lkV-oj-F2S" secondAttribute="bottom" constant="20" id="CBz-TY-fZ2"/>
+                            <constraint firstItem="FlR-PI-1gb" firstAttribute="top" secondItem="tds-4j-jzx" secondAttribute="bottom" constant="50" id="HNd-UQ-I5J"/>
+                            <constraint firstItem="FlR-PI-1gb" firstAttribute="centerX" secondItem="blj-cL-hfG" secondAttribute="centerX" id="HjO-CT-KYk"/>
+                            <constraint firstItem="9hI-Ak-TCF" firstAttribute="leading" secondItem="kvX-BU-k0K" secondAttribute="leading" constant="70" id="LS0-cx-BBR"/>
+                            <constraint firstItem="kvX-BU-k0K" firstAttribute="trailing" secondItem="9hI-Ak-TCF" secondAttribute="trailing" constant="70" id="N8X-gn-Gac"/>
                             <constraint firstItem="lpX-db-J2I" firstAttribute="top" secondItem="XbN-vo-GEx" secondAttribute="bottom" constant="20" id="Nxl-v6-1j1"/>
                             <constraint firstItem="XbN-vo-GEx" firstAttribute="centerX" secondItem="blj-cL-hfG" secondAttribute="centerX" id="Rhj-Vy-WzU"/>
                             <constraint firstItem="XbN-vo-GEx" firstAttribute="top" secondItem="kvX-BU-k0K" secondAttribute="top" constant="20" id="WkI-Tq-5kz"/>
@@ -112,11 +126,14 @@
                             <constraint firstItem="lkV-oj-F2S" firstAttribute="leading" secondItem="kvX-BU-k0K" secondAttribute="leading" constant="20" id="eWF-FC-lj5"/>
                             <constraint firstItem="lpX-db-J2I" firstAttribute="centerX" secondItem="blj-cL-hfG" secondAttribute="centerX" id="fPo-sD-kmD"/>
                             <constraint firstItem="lkV-oj-F2S" firstAttribute="top" secondItem="lpX-db-J2I" secondAttribute="bottom" constant="30" id="nre-1f-xKT"/>
+                            <constraint firstItem="9hI-Ak-TCF" firstAttribute="top" secondItem="FlR-PI-1gb" secondAttribute="bottom" constant="30" id="tmY-Rg-oe4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nIc-Za-hAE"/>
                     <connections>
                         <outlet property="agregarButton" destination="tds-4j-jzx" id="iWF-dY-mnb"/>
+                        <outlet property="controlVolumen" destination="9hI-Ak-TCF" id="UGF-Gr-4UX"/>
+                        <outlet property="cronometro" destination="FlR-PI-1gb" id="grj-tu-pe3"/>
                         <outlet property="grabarButton" destination="XbN-vo-GEx" id="SyP-oL-psF"/>
                         <outlet property="nombreTextField" destination="E32-3R-cSK" id="tFy-5D-ipV"/>
                         <outlet property="reproducirButton" destination="lpX-db-J2I" id="Xk3-li-Gf0"/>
